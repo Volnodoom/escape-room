@@ -1,52 +1,52 @@
 import { createGlobalStyle } from 'styled-components';
-import RalewayRegularWoff2 from 'assets/fonts/raleway-regular.woff2';
-import RalewayMediumWoff2 from 'assets/fonts/raleway-medium.woff2';
-import RalewaySemiBoldWoff2 from 'assets/fonts/raleway-semibold.woff2';
-import RalewayBoldWoff2 from 'assets/fonts/raleway-bold.woff2';
-import RalewayExtraBoldWoff2 from 'assets/fonts/raleway-extrabold.woff2';
-import RalewayBlackWoff2 from 'assets/fonts/raleway-black.woff2';
+// import RalewayRegularWoff2 from '/assets/fonts/raleway-regular.woff2';
+// import RalewayMediumWoff2 from 'assets/fonts/raleway-medium.woff2';
+// import RalewaySemiBoldWoff2 from 'assets/fonts/raleway-semibold.woff2';
+// import RalewayBoldWoff2 from 'assets/fonts/raleway-bold.woff2';
+// import RalewayExtraBoldWoff2 from 'assets/fonts/raleway-extrabold.woff2';
+// import RalewayBlackWoff2 from 'assets/fonts/raleway-black.woff2';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 400;
-    src: url(${RalewayRegularWoff2}) format('woff2');
+    src: url('/assets/fonts/raleway-regular.woff2') format('woff2');
   }
 
   @font-face {
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 500;
-    src: url(${RalewayMediumWoff2}) format('woff2');
+    src: url('/assets/fonts/raleway-medium.woff2') format('woff2');
   }
 
   @font-face {
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 600;
-    src: url(${RalewaySemiBoldWoff2}) format('woff2');
+    src: url('/assets/fonts/raleway-semibold.woff2') format('woff2');
   }
 
   @font-face {
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 700;
-    src: url(${RalewayBoldWoff2}) format('woff2');
+    src: url('/assets/fonts/raleway-bold.woff2') format('woff2');
   }
 
   @font-face {
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 800;
-    src: url(${RalewayExtraBoldWoff2}) format('woff2');
+    src: url('/assets/fonts/raleway-extrabold.woff2') format('woff2');
   }
 
   @font-face {
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 900;
-    src: url(${RalewayBlackWoff2}) format('woff2');
+    src: url('/assets/fonts/raleway-black.woff2') format('woff2');
   }
 
   *,
