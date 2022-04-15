@@ -1,31 +1,28 @@
 import { ThemeProvider } from 'styled-components';
 import {
-  Switch,
+  Routes,
   Route,
-  BrowserRouter as Router,
-} from 'components/common/common';
-import DetailedQuest from 'components/detailed-quest/detailed-quest';
-import Contacts from 'components/contacts/contacts';
-import Home from 'components/home/home';
+  BrowserRouter,
+} from '../common/common';
+import DetailedQuest from '../detailed-quest/detailed-quest';
+import Contacts from '../contacts/contacts';
+import Home from '../home/home';
 import { appTheme } from './common';
-import * as S from './app.styled';
+import * as S from './app-styled';
+import { AppRoutes } from '../../const';
+import NotAvailablePage from '../not-available-page/not-available-page';
 
 const App = () => (
   <ThemeProvider theme={appTheme}>
     <S.GlobalStyle />
-    <Router>
-      <Switch>
-        <Route exact path="/quest">
-          <DetailedQuest />
-        </Route>
-        <Route exact path="/contacts">
-          <Contacts />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
-    </Router>
+    <BrowserRouter>
+      <Routes>
+        <Route path={AppRoutes.Main} element={<Home />} />
+        <Route path={AppRoutes.Quest} element={<DetailedQuest />} />
+        <Route path={AppRoutes.Contacts} element={<Contacts />} />
+        <Route path={AppRoutes.NotAvailable} element={<NotAvailablePage />} />
+      </Routes>
+    </BrowserRouter>
   </ThemeProvider>
 );
 
