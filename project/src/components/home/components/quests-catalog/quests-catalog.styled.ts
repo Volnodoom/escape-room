@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
-import { Link } from 'components/common/common';
+import { BtnStyleType } from '../../../../types/style-types';
+import { Link } from '../../../common/common';
 
 const Tabs = styled.ul`
   display: flex;
@@ -36,7 +37,7 @@ const TabItem = styled.li`
   }
 `;
 
-const TabBtn = styled.button.attrs({ type: 'button' })`
+const TabBtn = styled.button.attrs({ type: 'button' })<BtnStyleType>`
   display: flex;
   align-items: center;
   padding: 0;
@@ -213,5 +214,5 @@ export {
   QuestTitle,
   QuestImage,
   QuestFeatures,
-  QuestFeatureItem,
+  QuestFeatureItem
 };

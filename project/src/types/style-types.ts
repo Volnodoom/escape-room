@@ -9,3 +9,11 @@ export type ThemeParameters = {
     }
   }
 }
+
+export type BtnStyleType = {
+  isActive?: boolean,
+}
+
+export type LinkHeaderType = {
+  $isActiveLink?: boolean,
+}

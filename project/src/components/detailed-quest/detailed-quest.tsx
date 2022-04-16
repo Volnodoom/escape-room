@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { MainLayout } from 'components/common/common';
-import { ReactComponent as IconClock } from 'assets/img/icon-clock.svg';
-import { ReactComponent as IconPerson } from 'assets/img/icon-person.svg';
-import { ReactComponent as IconPuzzle } from 'assets/img/icon-puzzle.svg';
+import { MainLayout } from '../common/common';
+import { ReactComponent as IconClock } from '../../assets/img/icon-clock.svg';
+import { ReactComponent as IconPerson } from '../../assets/img/icon-person.svg';
+import { ReactComponent as IconPuzzle } from '../../assets/img/icon-puzzle.svg';
 import * as S from './detailed-quest.styled';
 import { BookingModal } from './components/components';
 
-const DetailedQuest = () => {
+
+function DetailedQuest ():JSX.Element {
   const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
 
   const onBookingBtnClick = () => {
@@ -63,6 +64,6 @@ const DetailedQuest = () => {
       </S.Main>
     </MainLayout>
   );
-};
+}
 
 export default DetailedQuest;

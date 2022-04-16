@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button } from 'components/common/common';
+import { Button } from '../common/common';
 
 const Main = styled.main`
   max-width: 556px;
@@ -123,5 +123,5 @@ export {
   FeaturesItem,
   FeatureTitle,
   QuestDescription,
-  QuestBookingBtn,
+  QuestBookingBtn
 };
