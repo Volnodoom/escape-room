@@ -1,3 +1,4 @@
+import { Challenge } from 'src/types/general-types';
 import {
   MainLayout,
   PageTitle,
@@ -7,7 +8,12 @@ import {
 import { QuestsCatalog } from './components/components';
 import * as S from './home.styled';
 
-function HomePage ():JSX.Element {
+type HomePageProps = {
+  itemsList: Challenge[],
+}
+
+function HomePage (props: HomePageProps):JSX.Element {
+  const challenges = props.itemsList;
   return (
     <MainLayout>
       <S.Main forwardedAs="main">
@@ -15,7 +21,7 @@ function HomePage ():JSX.Element {
           <PageTitle>Выберите тематику</PageTitle>
           <PageSubtext>квесты в Санкт-Петербурге</PageSubtext>
         </PageHeading>
-        <QuestsCatalog />
+        <QuestsCatalog itemsList={challenges}/>
       </S.Main>
     </MainLayout>
   );}

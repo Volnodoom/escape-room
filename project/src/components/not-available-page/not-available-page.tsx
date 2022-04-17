@@ -1,18 +1,25 @@
-import { Link } from '../common/common';
 import { AppRoutes } from '../../const';
-import { nonAvailableDiv, nonAvailableLink, nonAvailableText } from './not-available-page.style';
+import { Footer, Header } from '../common/common';
+import * as SMain from '../home/home.styled';
+import * as S from './not-available-page.styled';
 
 function NotAvailablePage():JSX.Element {
   return (
-    <div style={nonAvailableDiv}>
-      <h1 style={nonAvailableText}>
+    <>
+      <Header isEmpty/>
+      <SMain.Main>
+        <S.NonAvailableDiv>
+          <S.NonAvailableText>
       404.
-        <small> Page not found</small>
-      </h1>
-      <Link to={AppRoutes.Main} style={nonAvailableLink}>
+            <small> Page not found</small>
+          </S.NonAvailableText>
+          <S.NonAvailableLink to={AppRoutes.Main}>
         Go to main page
-      </Link>
-    </div>
+          </S.NonAvailableLink>
+        </S.NonAvailableDiv>
+      </SMain.Main>
+      <Footer />
+    </>
   );
 }
 
