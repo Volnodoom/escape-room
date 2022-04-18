@@ -1,6 +1,7 @@
 import { MouseEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { HeaderTab } from 'src/const';
+import { useLocation } from 'react-router-dom';
+import { AppRoutes, HeaderTab } from 'src/const';
 import * as selector from 'src/store/data-challenges/challenges-selector';
 import { setPageType } from 'src/store/data-challenges/data-challenges';
 import logo from '../../../assets/img/logo.svg';
@@ -15,8 +16,11 @@ function Header (props: HeaderProps): JSX.Element {
   const dispatch = useDispatch();
   const headerTabs = Object.values(HeaderTab);
   const pageType = useSelector(selector.getPageType);
+  const currentPathName = useLocation();
 
-  const handleClick = (evt: MouseEvent<HTMLAnchorElement>): void => {
+  const isMainPage =  currentPathName.pathname === AppRoutes.Main;
+
+  const handleTabClick = (evt: MouseEvent<HTMLAnchorElement>): void => {
     const nameOfLink = ((evt.target as HTMLAnchorElement).parentElement as HTMLLIElement).dataset.linkname;
     if(nameOfLink === HeaderTab.Quest.linkName || nameOfLink === HeaderTab.Contacts.linkName) {
       dispatch(setPageType(nameOfLink));
@@ -26,12 +30,30 @@ function Header (props: HeaderProps): JSX.Element {
     }
   };
 
+  const handleLogoClick = (evt: MouseEvent<HTMLImageElement>) => {
+    if (isMainPage){
+      evt.preventDefault();
+    } else {
+      dispatch(setPageType(HeaderTab.Quest.linkName));
+    }
+  };
+
   return (
     <S.StyledHeader>
       <S.HeaderWrapper>
-        <S.Logo>
-          <S.Image src={logo} alt="Логотип Escape Room" width="134" height="50" />
-        </S.Logo>
+        {
+          isMainPage
+            ? (
+              <S.Logo>
+                <S.Image src={logo} alt="Логотип Escape Room" width="134" height="50" onClick={handleLogoClick} />
+              </S.Logo>
+            )
+            : (
+              <S.LogoLink to={AppRoutes.Main}>
+                <S.Image src={logo} alt="Логотип Escape Room" width="134" height="50" onClick={handleLogoClick} />
+              </S.LogoLink>
+            )
+        }
 
         {
           !isEmpty &&
@@ -42,7 +64,7 @@ function Header (props: HeaderProps): JSX.Element {
                   <S.LinkItem data-linkname={line.linkName} key={line.title}>
                     <S.Link
                       to={line.link}
-                      onClick={handleClick}
+                      onClick={handleTabClick}
                       $isActiveLink={line.linkName === pageType}
                       key={line.title}
                     >{line.title}
