@@ -1,4 +1,8 @@
+import { MouseEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { HeaderTab } from 'src/const';
+import * as selector from 'src/store/data-challenges/challenges-selector';
+import { setPageType } from 'src/store/data-challenges/data-challenges';
 import logo from '../../../assets/img/logo.svg';
 import * as S from './header.styled';
 
@@ -8,8 +12,19 @@ type HeaderProps = {
 
 function Header (props: HeaderProps): JSX.Element {
   const {isEmpty} = props;
+  const dispatch = useDispatch();
   const headerTabs = Object.values(HeaderTab);
-  const InitialHeaderTab = {headerTabValue: HeaderTab.Quest.linkName};
+  const pageType = useSelector(selector.getPageType);
+
+  const handleClick = (evt: MouseEvent<HTMLAnchorElement>): void => {
+    const nameOfLink = ((evt.target as HTMLAnchorElement).parentElement as HTMLLIElement).dataset.linkname;
+    if(nameOfLink === HeaderTab.Quest.linkName || nameOfLink === HeaderTab.Contacts.linkName) {
+      dispatch(setPageType(nameOfLink));
+    } else {
+      evt.preventDefault();
+      (evt.target as HTMLAnchorElement).blur();
+    }
+  };
 
   return (
     <S.StyledHeader>
@@ -27,7 +42,8 @@ function Header (props: HeaderProps): JSX.Element {
                   <S.LinkItem data-linkname={line.linkName} key={line.title}>
                     <S.Link
                       to={line.link}
-                      $isActiveLink={line.linkName === InitialHeaderTab.headerTabValue}
+                      onClick={handleClick}
+                      $isActiveLink={line.linkName === pageType}
                       key={line.title}
                     >{line.title}
                     </S.Link>

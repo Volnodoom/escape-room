@@ -1,11 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { ApiActions, LoadingStatus, NameSpace } from 'src/const';
+import { ALL_GENRE, ApiActions, HeaderTab, LoadingStatus, NameSpace } from 'src/const';
 import * as api from 'src/services/api';
 import { AppDispatch, DataChallengesType, State } from 'src/types/state.type';
 import { checkStatus, parseResponse, restructureData } from 'src/utils/component-utils';
 
 const initialState: DataChallengesType = {
   challenges: null,
+  theme: ALL_GENRE,
+  pageType: HeaderTab.Quest.linkName,
   loadingStatus: LoadingStatus.Idle,
   error: null,
 };
@@ -40,6 +42,12 @@ export const dataChallenges = createSlice({
     setQuests: (state, action) => {
       state.challenges = action.payload;
     },
+    setTheme: (state, action) => {
+      state.theme = action.payload;
+    },
+    setPageType: (state, action) => {
+      state.pageType = action.payload;
+    },
     setLoadingStatus: (state, action) => {
       state.loadingStatus = action.payload;
     },
@@ -63,6 +71,8 @@ export const dataChallenges = createSlice({
 
 export const {
   setQuests,
+  setTheme,
   setLoadingStatus,
   setError,
+  setPageType,
 } = dataChallenges.actions;

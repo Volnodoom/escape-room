@@ -1,6 +1,6 @@
 export const UNKNOWN_DIFFICULTY_TYPE = 'Неизвестный уровень сложности';
 export const UNKNOWN_GENRE_TYPE = 'Неизвестный жанр';
-export const AllGenre = 'Все квесты';
+export const ALL_GENRE = 'Все квесты';
 export const BACKEND_URL = 'http://localhost:3001';
 const LINK_PLUG = '#';
 

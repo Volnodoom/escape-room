@@ -5,14 +5,16 @@ import { ReactComponent as IconMystic } from '../../../../assets/img/icon-mystic
 import { ReactComponent as IconDetective } from '../../../../assets/img/icon-detective.svg';
 import { ReactComponent as IconScifi } from '../../../../assets/img/icon-scifi.svg';
 import * as S from './quests-catalog.styled';
-import { AllGenre, TitleList } from 'src/const';
+import { ALL_GENRE, TitleList } from 'src/const';
 import { PreviewQuest } from 'src/components/card-quest/components';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as selector from 'src/store/data-challenges/challenges-selector';
+import { MouseEvent } from 'react';
+import { setTheme } from 'src/store/data-challenges/data-challenges';
 
 const tabPatterns = [
   {
-    genre: AllGenre,
+    genre: ALL_GENRE,
     iconComponent: <IconAllQuests />,
   },
   {
@@ -38,8 +40,17 @@ const tabPatterns = [
 ];
 
 function QuestsCatalog (): JSX.Element {
-  const initialCondition = {genre: AllGenre};
+  const theme = useSelector(selector.getTheme);
   const challenges = useSelector(selector.getChallenges);
+  const dispatch = useDispatch();
+
+  const handleClick = (evt: MouseEvent<HTMLButtonElement>) => {
+    dispatch(
+      setTheme(
+        ((evt.target as HTMLSpanElement | SVGElement)
+          .parentElement as HTMLButtonElement).dataset.btntheme,
+      ));
+  };
 
   return (
     <>
@@ -48,7 +59,9 @@ function QuestsCatalog (): JSX.Element {
           tabPatterns.map((line) => (
             <S.TabItem key={line.genre}>
               <S.TabBtn
-                isActive={line.genre === initialCondition.genre}
+                isActive={line.genre === theme}
+                data-btntheme={line.genre}
+                onClick={handleClick}
               >
                 {line.iconComponent}
                 <S.TabTitle>{line.genre}</S.TabTitle>

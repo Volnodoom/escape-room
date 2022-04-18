@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MainLayout } from '../../common/common';
 import { ReactComponent as IconClock } from '../../../assets/img/icon-clock.svg';
 import { ReactComponent as IconPerson } from '../../../assets/img/icon-person.svg';
@@ -7,15 +7,21 @@ import * as S from './detailed-quest.styled';
 import { BookingModal } from '../components/components';
 import { adaptDifficultyLevel, adaptGenre } from 'src/utils/component-utils';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { getSpecificChallenge } from 'src/store/data-challenges/challenges-selector';
+import { useDispatch, useSelector } from 'react-redux';
+import * as selector from 'src/store/data-challenges/challenges-selector';
 import NotAvailablePage from 'src/components/not-available-page/not-available-page';
+import { setTheme } from 'src/store/data-challenges/data-challenges';
+import { ALL_GENRE } from 'src/const';
 
 function DetailedQuest ():JSX.Element {
   const {id} = useParams<{id: string}>();
-  const challenge = useSelector(getSpecificChallenge(Number(id)));
-
+  const challenge = useSelector(selector.getSpecificChallenge(Number(id)));
   const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setTheme(ALL_GENRE));
+  });
 
   if(!challenge) {
     return <NotAvailablePage />;

@@ -23,3 +23,5 @@ export const getSpecificChallenge = (id: number) => (state: State): Challenge | 
 };
 
 export const getChallengesLoadingStatus = (state: State): LoadingStatus => state.DATA_CHALLENGES.loadingStatus;
+export const getTheme = (state: State): string => state.DATA_CHALLENGES.theme;
+export const getPageType = (state: State): string => state.DATA_CHALLENGES.pageType;

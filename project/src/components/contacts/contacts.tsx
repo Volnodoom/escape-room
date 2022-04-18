@@ -1,8 +1,19 @@
 import { MainLayout, PageTitle, PageSubtext } from '../common/common';
 import contactsMap from '../../assets/img/contacts-map.jpg';
 import * as S from './contacts.styled';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setPageType, setTheme } from 'src/store/data-challenges/data-challenges';
+import { ALL_GENRE, HeaderTab } from 'src/const';
 
 function Contacts (): JSX.Element {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setTheme(ALL_GENRE));
+    dispatch(setPageType(HeaderTab.Contacts.linkName));
+  });
+
   return(
     <MainLayout>
       <S.Main>

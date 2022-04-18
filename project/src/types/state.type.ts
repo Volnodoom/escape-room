@@ -4,6 +4,8 @@ import { ChallengeObject } from './general.type';
 
 export type DataChallengesType = {
   challenges: ChallengeObject  | null,
+  theme: string,
+  pageType: string,
   loadingStatus: LoadingStatus,
   error: null | string,
 }
