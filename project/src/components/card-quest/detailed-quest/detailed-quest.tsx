@@ -5,14 +5,21 @@ import { ReactComponent as IconPerson } from '../../../assets/img/icon-person.sv
 import { ReactComponent as IconPuzzle } from '../../../assets/img/icon-puzzle.svg';
 import * as S from './detailed-quest.styled';
 import { BookingModal } from '../components/components';
-import { Challenge } from 'src/types/general-types';
 import { adaptDifficultyLevel, adaptGenre } from 'src/utils/component-utils';
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { getSpecificChallenge } from 'src/store/data-challenges/challenges-selector';
+import NotAvailablePage from 'src/components/not-available-page/not-available-page';
 
-type DetailedQuestProps = {
-  challenge: Challenge;
-}
+function DetailedQuest ():JSX.Element {
+  const {id} = useParams<{id: string}>();
+  const challenge = useSelector(getSpecificChallenge(Number(id)));
 
-function DetailedQuest (props: DetailedQuestProps):JSX.Element {
+  const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
+
+  if(!challenge) {
+    return <NotAvailablePage />;
+  }
   const {
     title,
     description,
@@ -21,9 +28,8 @@ function DetailedQuest (props: DetailedQuestProps):JSX.Element {
     level,
     peopleCount,
     duration,
-  } = props.challenge;
+  } = challenge;
 
-  const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
 
   const onBookingBtnClick = () => {
     setIsBookingModalOpened(true);

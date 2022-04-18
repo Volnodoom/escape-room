@@ -1,19 +1,31 @@
-import { Challenge } from 'src/types/general-types';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { LoadingStatus } from 'src/const';
+import * as selector from 'src/store/data-challenges/challenges-selector';
+import { fetchQuestsAction } from 'src/store/data-challenges/data-challenges';
 import {
   MainLayout,
   PageTitle,
   PageHeading,
   PageSubtext
 } from '../common/common';
+import LoadingScreen from '../loading-screen/loading-screen';
 import { QuestsCatalog } from './components/components';
 import * as S from './home.styled';
 
-type HomePageProps = {
-  itemsList: Challenge[],
-}
+function HomePage ():JSX.Element {
+  const loadingChallengesStatus = useSelector(selector.getChallengesLoadingStatus);
+  const isLoaded = loadingChallengesStatus === LoadingStatus.Succeeded;
+  const dispatch = useDispatch();
 
-function HomePage (props: HomePageProps):JSX.Element {
-  const challenges = props.itemsList;
+  useEffect(() => {
+    dispatch(fetchQuestsAction());
+  }, [dispatch]);
+
+  if (!isLoaded) {
+    return <LoadingScreen />;
+  }
+
   return (
     <MainLayout>
       <S.Main forwardedAs="main">
@@ -21,7 +33,7 @@ function HomePage (props: HomePageProps):JSX.Element {
           <PageTitle>Выберите тематику</PageTitle>
           <PageSubtext>квесты в Санкт-Петербурге</PageSubtext>
         </PageHeading>
-        <QuestsCatalog itemsList={challenges}/>
+        <QuestsCatalog />
       </S.Main>
     </MainLayout>
   );}

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { BtnStyleType } from '../../../../types/style-types';
+import { BtnStyleType } from '../../../../types/style.type';
 
 const Tabs = styled.ul`
   display: flex;

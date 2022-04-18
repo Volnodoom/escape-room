@@ -1,7 +1,7 @@
 import * as S from './preview-quest.styled';
 import { ReactComponent as IconPerson } from '../../../assets/img/icon-person.svg';
 import { ReactComponent as IconPuzzle } from '../../../assets/img/icon-puzzle.svg';
-import { Challenge } from 'src/types/general-types';
+import { Challenge } from 'src/types/general.type';
 import { AppRoutes } from 'src/const';
 import { adaptDifficultyLevel } from 'src/utils/component-utils';
 

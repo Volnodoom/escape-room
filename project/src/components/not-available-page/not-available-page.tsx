@@ -1,12 +1,11 @@
 import { AppRoutes } from '../../const';
-import { Footer, Header } from '../common/common';
+import { MainLayout } from '../common/common';
 import * as SMain from '../home/home.styled';
 import * as S from './not-available-page.styled';
 
 function NotAvailablePage():JSX.Element {
   return (
-    <>
-      <Header isEmpty/>
+    <MainLayout isEmpty>
       <SMain.Main>
         <S.NonAvailableDiv>
           <S.NonAvailableText>
@@ -18,8 +17,7 @@ function NotAvailablePage():JSX.Element {
           </S.NonAvailableLink>
         </S.NonAvailableDiv>
       </SMain.Main>
-      <Footer />
-    </>
+    </MainLayout>
   );
 }
 

@@ -3,12 +3,13 @@ import { ReactNode } from 'react';
 
 type MainLayoutProps = {
   children: ReactNode;
+  isEmpty?: boolean;
 }
 
-function MainLayout ({children}: MainLayoutProps): JSX.Element {
+function MainLayout ({children, isEmpty}: MainLayoutProps): JSX.Element {
   return (
     <>
-      <Header />
+      <Header isEmpty={isEmpty}/>
       {children}
       <Footer />
     </>

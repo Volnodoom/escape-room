@@ -1,6 +1,7 @@
 export const UNKNOWN_DIFFICULTY_TYPE = 'Неизвестный уровень сложности';
 export const UNKNOWN_GENRE_TYPE = 'Неизвестный жанр';
 export const AllGenre = 'Все квесты';
+export const BACKEND_URL = 'http://localhost:3001';
 const LINK_PLUG = '#';
 
 export const AppRoutes = {
@@ -8,7 +9,13 @@ export const AppRoutes = {
   Contacts: '/contacts',
   Main: '/',
   NotAvailable: '*',
-};
+}  as const;
+
+export const APIRoutes = {
+  Quests: '/quests',
+  Quest: (id: number | string = ':id'): string => `/quests/${id}`,
+  Booking: '/orders',
+} as const;
 
 export const TitleList = {
   Adventures: {ru: 'Приключения', server: 'adventures'},
@@ -52,3 +59,24 @@ export const HeaderTab = {
     linkName: 'Contacts',
   },
 };
+
+export enum NameSpace {
+  DataChallenges = 'DATA_CHALLENGES',
+  DataBooking = 'DATA_BOOKING',
+}
+
+export enum Method {
+  GET = 'GET',
+  POST = 'POST',
+}
+
+export enum ApiActions {
+  FetchQuests = 'quests/fetchQuests',
+}
+
+export enum LoadingStatus {
+  Idle = 'idle',
+  Loading = 'loading',
+  Succeeded = 'succeeded',
+  Failed = 'failed',
+}

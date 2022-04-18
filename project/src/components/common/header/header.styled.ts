@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { LinkHeaderType } from '../../../types/style-types';
+import { LinkHeaderType } from '../../../types/style.type';
 import { Container, Link as RouterLink } from '../common';
 
 const StyledHeader = styled.header`

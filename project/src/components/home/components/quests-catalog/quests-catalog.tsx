@@ -6,13 +6,9 @@ import { ReactComponent as IconDetective } from '../../../../assets/img/icon-det
 import { ReactComponent as IconScifi } from '../../../../assets/img/icon-scifi.svg';
 import * as S from './quests-catalog.styled';
 import { AllGenre, TitleList } from 'src/const';
-import { Challenge } from 'src/types/general-types';
 import { PreviewQuest } from 'src/components/card-quest/components';
-
-
-type QuestsCatalogProps = {
-  itemsList: Challenge[],
-}
+import { useSelector } from 'react-redux';
+import * as selector from 'src/store/data-challenges/challenges-selector';
 
 const tabPatterns = [
   {
@@ -41,9 +37,9 @@ const tabPatterns = [
   },
 ];
 
-function QuestsCatalog (props: QuestsCatalogProps): JSX.Element {
+function QuestsCatalog (): JSX.Element {
   const initialCondition = {genre: AllGenre};
-  const challenges = props.itemsList;
+  const challenges = useSelector(selector.getChallenges);
 
   return (
     <>
@@ -65,11 +61,12 @@ function QuestsCatalog (props: QuestsCatalogProps): JSX.Element {
       <S.QuestsList>
         {
           challenges.map((line) => (
-            <PreviewQuest challengeInfo={line} key={Math.random()*10000} />
+            <PreviewQuest challengeInfo={line} key={line.id} />
           ))
         }
       </S.QuestsList>
     </>
-  );}
+  );
+}
 
 export default QuestsCatalog;

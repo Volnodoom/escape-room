@@ -1,4 +1,5 @@
 import { DifficultyLevel, TitleList, UNKNOWN_DIFFICULTY_TYPE, UNKNOWN_GENRE_TYPE } from 'src/const';
+import { Challenge, ChallengeObject } from 'src/types/general.type';
 
 export const adaptDifficultyLevel = (level: string): string => {
   const adaptedValue = DifficultyLevel.find((line) => line.server === level);
@@ -14,3 +15,14 @@ export const adaptGenre = (genre: string): string => {
     return adaptedValue.ru;
   } else {return UNKNOWN_GENRE_TYPE;}
 };
+
+export const restructureData = (data: Challenge[]): ChallengeObject => data
+  .reduce((previousValue, currentValue) => ({...previousValue, [currentValue.id]: currentValue}), {});
+
+export const checkStatus = (response: Response): void => {
+  if(!response.ok) {
+    throw new Error(`${response.status}: ${response.statusText}`);
+  }
+};
+
+export const parseResponse = (response: Response): Promise<Challenge[]> => response.json();
