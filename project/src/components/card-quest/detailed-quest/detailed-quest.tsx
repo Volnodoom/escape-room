@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as selector from 'src/store/data-challenges/challenges-selector';
 import NotAvailablePage from 'src/components/not-available-page/not-available-page';
 import { setTheme } from 'src/store/data-challenges/data-challenges';
-import { ALL_GENRE } from 'src/const';
+import { AllGenre } from 'src/const';
 
 function DetailedQuest ():JSX.Element {
   const {id} = useParams<{id: string}>();
@@ -20,7 +20,7 @@ function DetailedQuest ():JSX.Element {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setTheme(ALL_GENRE));
+    dispatch(setTheme(AllGenre.server));
   });
 
   if(!challenge) {

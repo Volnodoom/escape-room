@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { ALL_GENRE, ApiActions, HeaderTab, LoadingStatus, NameSpace } from 'src/const';
+import { AllGenre, ApiActions, HeaderTab, LoadingStatus, NameSpace } from 'src/const';
 import * as api from 'src/services/api';
 import { AppDispatch, DataChallengesType, State } from 'src/types/state.type';
 import { checkStatus, parseResponse, restructureData } from 'src/utils/component-utils';
 
 const initialState: DataChallengesType = {
   challenges: null,
-  theme: ALL_GENRE,
+  theme: AllGenre.server,
   pageType: HeaderTab.Quest.linkName,
   loadingStatus: LoadingStatus.Idle,
   error: null,

@@ -5,50 +5,50 @@ import { ReactComponent as IconMystic } from '../../../../assets/img/icon-mystic
 import { ReactComponent as IconDetective } from '../../../../assets/img/icon-detective.svg';
 import { ReactComponent as IconScifi } from '../../../../assets/img/icon-scifi.svg';
 import * as S from './quests-catalog.styled';
-import { ALL_GENRE, TitleList } from 'src/const';
+import { AllGenre, TitleList } from 'src/const';
 import { PreviewQuest } from 'src/components/card-quest/components';
 import { useDispatch, useSelector } from 'react-redux';
 import * as selector from 'src/store/data-challenges/challenges-selector';
 import { MouseEvent } from 'react';
 import { setTheme } from 'src/store/data-challenges/data-challenges';
+import { adaptGenre } from 'src/utils/component-utils';
 
 const tabPatterns = [
   {
-    genre: ALL_GENRE,
+    genre: AllGenre.server,
     iconComponent: <IconAllQuests />,
   },
   {
-    genre: TitleList.Adventures.ru,
+    genre: TitleList.Adventures.server,
     iconComponent: <IconAdventures />,
   },
   {
-    genre: TitleList.Horror.ru,
+    genre: TitleList.Horror.server,
     iconComponent: <IconHorrors />,
   },
   {
-    genre: TitleList.Mystic.ru,
+    genre: TitleList.Mystic.server,
     iconComponent: <IconMystic />,
   },
   {
-    genre: TitleList.Detectives.ru,
+    genre: TitleList.Detectives.server,
     iconComponent: <IconDetective />,
   },
   {
-    genre: TitleList.SciFi.ru,
+    genre: TitleList.SciFi.server,
     iconComponent: <IconScifi />,
   },
 ];
 
 function QuestsCatalog (): JSX.Element {
   const theme = useSelector(selector.getTheme);
-  const challenges = useSelector(selector.getChallenges);
+  const challenges = useSelector(selector.getFiletedChallenges);
   const dispatch = useDispatch();
 
   const handleClick = (evt: MouseEvent<HTMLButtonElement>) => {
     dispatch(
       setTheme(
-        ((evt.target as HTMLSpanElement | SVGElement)
-          .parentElement as HTMLButtonElement).dataset.btntheme,
+        (evt.currentTarget as HTMLButtonElement).dataset.btntheme,
       ));
   };
 
@@ -64,7 +64,7 @@ function QuestsCatalog (): JSX.Element {
                 onClick={handleClick}
               >
                 {line.iconComponent}
-                <S.TabTitle>{line.genre}</S.TabTitle>
+                <S.TabTitle>{adaptGenre(line.genre)}</S.TabTitle>
               </S.TabBtn>
             </S.TabItem>
           ))
