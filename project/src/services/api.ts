@@ -9,17 +9,12 @@ const load = async({
   headers = new Headers(),
 }: LoadingType ): Promise<Response> =>  {
 
-  try{
-    const response = await fetch(
-      `${BACKEND_URL}${url}`,
-      {method, body, headers});
+  const response = await fetch(
+    `${BACKEND_URL}${url}`,
+    {method, body, headers});
 
-    checkStatus(response);
-    return response;
-  } catch (err) {
-    throw new Error (`Something went wrong with data ${err}`);
-  }
-
+  checkStatus(response);
+  return response;
 };
 
 export const getQuests = (): Promise<Response> =>

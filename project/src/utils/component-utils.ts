@@ -21,7 +21,7 @@ export const restructureData = (data: Challenge[]): ChallengeObject => data
 
 export const checkStatus = (response: Response): void => {
   if(!response.ok) {
-    throw new Error(`${response.status}: ${response.statusText}`);
+    throw response;
   }
 };
 

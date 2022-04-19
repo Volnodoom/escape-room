@@ -144,7 +144,7 @@ function BookingModal (): JSX.Element {
               id="booking-legal"
               name="booking-legal"
               onChange={() => setCurrentAgreement(!currentAgreement)}
-              checked
+              defaultChecked
               required
             />
             <S.BookingCheckboxLabel

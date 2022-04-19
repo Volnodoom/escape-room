@@ -27,3 +27,5 @@ export type LoadingType = {
 }
 
 export type ChallengeObject = {[id in number]: Challenge};
+
+export type ErrorType = unknown;

@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AllGenre, ApiActions, HeaderTab, LoadingStatus, NameSpace } from 'src/const';
 import * as api from 'src/services/api';
+import { handleError } from 'src/services/handle-error';
 import { Challenge, ChallengeObject } from 'src/types/general.type';
 import { AppDispatch, DataChallengesType, State } from 'src/types/state.type';
-import { checkStatus, parseResponse, restructureData } from 'src/utils/component-utils';
+import { parseResponse, restructureData } from 'src/utils/component-utils';
 
 const initialState: DataChallengesType = {
   challenges: null,
@@ -22,7 +23,6 @@ export const fetchQuestsAction = createAsyncThunk<void, undefined, {
   async(_arg, {dispatch}) => {
     try {
       const response = await api.getQuests();
-      checkStatus(response);
       const data = await parseResponse(response) as Challenge[];
 
       dispatch(
@@ -31,7 +31,8 @@ export const fetchQuestsAction = createAsyncThunk<void, undefined, {
         ),
       );
     } catch (error) {
-      throw new Error('We have run into some problems with getting data');
+      handleError(error);
+      throw error;
     }
   },
 );
@@ -46,7 +47,6 @@ export const fetchOneQuesAction = createAsyncThunk<void, number, {
   async(id:number, {dispatch}) => {
     try {
       const response = await api.getOneQuest(id);
-      checkStatus(response);
       const data = await parseResponse(response) as Challenge;
 
       dispatch(
@@ -55,7 +55,7 @@ export const fetchOneQuesAction = createAsyncThunk<void, number, {
         ),
       );
     } catch (error) {
-      throw new Error('We have run into some problems with getting data');
+      handleError(error);
     }
   },
 );

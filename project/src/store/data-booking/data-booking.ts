@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { ApiActions, LoadingStatus, NameSpace } from 'src/const';
 import * as api from 'src/services/api';
+import { handleError } from 'src/services/handle-error';
 import { BookingPost } from 'src/types/general.type';
 import { AppDispatch, DataBookingType, State } from 'src/types/state.type';
-import { checkStatus } from 'src/utils/component-utils';
 
 const initialState: DataBookingType = {
   bookingInfo: null,
@@ -19,10 +19,10 @@ export const fetchBookingOrderAction = createAsyncThunk<void, BookingPost, {
   ApiActions.FetchBookingOrder,
   async(orderData: BookingPost) => {
     try{
-      const response = await api.postBooking(orderData);
-      checkStatus(response);
-    } catch (err) {
-      throw new Error('We have run into some problems with posting data');
+      await api.postBooking(orderData);
+    } catch (error) {
+      handleError(error);
+      throw error;
     }
   },
 );

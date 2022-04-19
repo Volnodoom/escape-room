@@ -2,6 +2,8 @@ export const UNKNOWN_DIFFICULTY_TYPE = 'Неизвестный уровень с
 export const UNKNOWN_GENRE_TYPE = 'Неизвестный жанр';
 export const BACKEND_URL = 'http://localhost:3001';
 export const PIN_SVG = '../img/icon-blip.svg';
+export const BAD_REQUEST = 400;
+export const UNDEFINED_ERROR = 'Your request run into some problems. Please, check your internet connection and try again.';
 const LINK_PLUG = '#';
 
 export const AppRoutes = {
