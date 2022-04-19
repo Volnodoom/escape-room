@@ -1,10 +1,10 @@
 import { MainLayout, PageTitle, PageSubtext } from '../common/common';
-import contactsMap from '../../assets/img/contacts-map.jpg';
 import * as S from './contacts.styled';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setPageType, setTheme } from 'src/store/data-challenges/data-challenges';
 import { AllGenre, HeaderTab } from 'src/const';
+import { MapGeographical } from './components/components';
 
 function Contacts (): JSX.Element {
   const dispatch = useDispatch();
@@ -52,14 +52,8 @@ function Contacts (): JSX.Element {
               </S.ContactValue>
             </S.ContactsList>
 
-            <S.ContactsMap>
-              <S.ContactsMapImage
-                src={contactsMap}
-                alt="мы находимся по адресу Санкт-Петербург, Набережная реки Карповка, д 5"
-                width="649"
-                height="336"
-              />
-            </S.ContactsMap>
+            <MapGeographical />
+
           </S.Contacts>
         </S.ContentWrapper>
       </S.Main>

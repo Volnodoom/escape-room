@@ -1,6 +1,7 @@
 export const UNKNOWN_DIFFICULTY_TYPE = 'Неизвестный уровень сложности';
 export const UNKNOWN_GENRE_TYPE = 'Неизвестный жанр';
 export const BACKEND_URL = 'http://localhost:3001';
+export const PIN_SVG = '../img/icon-blip.svg';
 const LINK_PLUG = '#';
 
 export const AppRoutes = {
@@ -93,4 +94,17 @@ export const ErrorMessageFormValidation = {
   length: 'Phone number length must contain 10 symbols. Please, correct it.',
   positive: 'Number of people must be positive (grater than zero). Please, correct it.',
   noErrors: '',
+};
+
+export const MapLocation = {
+  lat: 59.968137,
+  lng: 30.316263,
+  zoom: 15,
+};
+
+export const PinOnMap = {
+  SizeWidth: 50,
+  SizeHeight: 65,
+  AnchorWidth: 25,
+  AnchorHeight: 65,
 };

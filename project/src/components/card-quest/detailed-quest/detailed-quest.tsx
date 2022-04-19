@@ -28,7 +28,7 @@ function DetailedQuest ():JSX.Element {
 
   useEffect(() => {
     dispatch(setTheme(AllGenre.server));
-  },[]);
+  });
 
   useEffect(() => {
     if(!challenge) {
