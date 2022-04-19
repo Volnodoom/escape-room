@@ -5,6 +5,7 @@ type BtnProps = {
   children: ReactNode,
   type?: 'button' | 'submit' | 'reset',
   onClick?: () => void,
+  disabled?: boolean | undefined,
 }
 
 function Button ({ children, ...props }: BtnProps): JSX.Element {

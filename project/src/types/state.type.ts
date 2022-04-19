@@ -1,11 +1,18 @@
 import { LoadingStatus } from 'src/const';
 import { store } from 'src/store/index';
-import { ChallengeObject } from './general.type';
+import { BookingPost, ChallengeObject } from './general.type';
 
 export type DataChallengesType = {
   challenges: ChallengeObject  | null,
   theme: string,
   pageType: string,
+  loadingStatus: LoadingStatus,
+  error: null | string,
+}
+
+export type DataBookingType = {
+  bookingInfo: BookingPost | null,
+  isModalActive: boolean,
   loadingStatus: LoadingStatus,
   error: null | string,
 }

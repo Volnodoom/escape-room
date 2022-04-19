@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AllGenre, ApiActions, HeaderTab, LoadingStatus, NameSpace } from 'src/const';
 import * as api from 'src/services/api';
+import { Challenge, ChallengeObject } from 'src/types/general.type';
 import { AppDispatch, DataChallengesType, State } from 'src/types/state.type';
 import { checkStatus, parseResponse, restructureData } from 'src/utils/component-utils';
 
@@ -22,7 +23,7 @@ export const fetchQuestsAction = createAsyncThunk<void, undefined, {
     try {
       const response = await api.getQuests();
       checkStatus(response);
-      const data = await parseResponse(response);
+      const data = await parseResponse(response) as Challenge[];
 
       dispatch(
         setQuests(
@@ -35,12 +36,41 @@ export const fetchQuestsAction = createAsyncThunk<void, undefined, {
   },
 );
 
+
+export const fetchOneQuesAction = createAsyncThunk<void, number, {
+  dispatch: AppDispatch,
+  state: State,
+}
+>(
+  ApiActions.FetchOneQuests,
+  async(id:number, {dispatch}) => {
+    try {
+      const response = await api.getOneQuest(id);
+      checkStatus(response);
+      const data = await parseResponse(response) as Challenge;
+
+      dispatch(
+        setQuests(
+          {[data.id]: data},
+        ),
+      );
+    } catch (error) {
+      throw new Error('We have run into some problems with getting data');
+    }
+  },
+);
+
+
 export const dataChallenges = createSlice({
   name: NameSpace.DataChallenges,
   initialState,
   reducers: {
     setQuests: (state, action) => {
-      state.challenges = action.payload;
+      const update: ChallengeObject = action.payload;
+      state.challenges = {
+        ...state.challenges,
+        ...update,
+      };
     },
     setTheme: (state, action) => {
       state.theme = action.payload;
@@ -48,7 +78,7 @@ export const dataChallenges = createSlice({
     setPageType: (state, action) => {
       state.pageType = action.payload;
     },
-    setLoadingStatus: (state, action) => {
+    setChallengesLoadingStatus: (state, action) => {
       state.loadingStatus = action.payload;
     },
     setError: (state, action) => {
@@ -65,6 +95,15 @@ export const dataChallenges = createSlice({
       })
       .addCase(fetchQuestsAction.rejected, (state) => {
         state.loadingStatus = LoadingStatus.Failed;
+      })
+      .addCase(fetchOneQuesAction.pending, (state) => {
+        state.loadingStatus = LoadingStatus.Loading;
+      })
+      .addCase(fetchOneQuesAction.fulfilled, (state) => {
+        state.loadingStatus = LoadingStatus.Succeeded;
+      })
+      .addCase(fetchOneQuesAction.rejected, (state) => {
+        state.loadingStatus = LoadingStatus.Failed;
       });
   },
 });
@@ -72,7 +111,7 @@ export const dataChallenges = createSlice({
 export const {
   setQuests,
   setTheme,
-  setLoadingStatus,
+  setChallengesLoadingStatus,
   setError,
   setPageType,
 } = dataChallenges.actions;

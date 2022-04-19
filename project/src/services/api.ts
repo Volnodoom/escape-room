@@ -1,14 +1,26 @@
 import { APIRoutes, BACKEND_URL, Method } from 'src/const';
 import { BookingPost, LoadingType } from 'src/types/general.type';
+import { checkStatus } from 'src/utils/component-utils';
 
 const load = async({
   url,
   method = Method.GET,
   body = null,
-}: LoadingType ): Promise<Response> =>  await fetch(
-  `${BACKEND_URL}${url}`,
-  {method, body},
-);
+  headers = new Headers(),
+}: LoadingType ): Promise<Response> =>  {
+
+  try{
+    const response = await fetch(
+      `${BACKEND_URL}${url}`,
+      {method, body, headers});
+
+    checkStatus(response);
+    return response;
+  } catch (err) {
+    throw new Error (`Something went wrong with data ${err}`);
+  }
+
+};
 
 export const getQuests = (): Promise<Response> =>
   load({url: APIRoutes.Quests});
@@ -21,4 +33,5 @@ export const postBooking = (bookingInfo: BookingPost): Promise<Response> =>
     url: APIRoutes.Booking,
     method: Method.POST,
     body:  JSON.stringify(bookingInfo),
+    headers: new Headers({'Content-Type': 'application/json;charset=utf-8'}),
   });

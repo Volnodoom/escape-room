@@ -72,6 +72,8 @@ export enum Method {
 
 export enum ApiActions {
   FetchQuests = 'quests/fetchQuests',
+  FetchOneQuests = 'quests/fetchQuestsOne',
+  FetchBookingOrder = 'booking/fetchBookingOrder',
 }
 
 export enum LoadingStatus {
@@ -80,3 +82,15 @@ export enum LoadingStatus {
   Succeeded = 'succeeded',
   Failed = 'failed',
 }
+
+export const PhonePattern = {
+  Number: new RegExp(/^[0-9]+$/, 'g'),
+  Length: new RegExp(/^\d{10}(?!\d)/, 'g'),
+};
+
+export const ErrorMessageFormValidation = {
+  number: 'Phone number must contain only numbers. Please, correct it.',
+  length: 'Phone number length must contain 10 symbols. Please, correct it.',
+  positive: 'Number of people must be positive (grater than zero). Please, correct it.',
+  noErrors: '',
+};

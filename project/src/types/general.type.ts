@@ -15,7 +15,7 @@ export type Challenge = {
 export type BookingPost = {
   name: string,
   peopleCount: number,
-  phone: number,
+  phone: string,
   isLegal: boolean,
 }
 
@@ -23,6 +23,7 @@ export type LoadingType = {
   url: string,
   method?: Method,
   body?: string | null | undefined,
+  headers?: Headers,
 }
 
 export type ChallengeObject = {[id in number]: Challenge};
