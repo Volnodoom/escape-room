@@ -19,8 +19,8 @@ export const APIRoutes = {
   Booking: '/orders',
 } as const;
 
-export const AllGenre = {ru:'Все квесты', server: 'allGenre'};
 export const TitleList = {
+  General: {ru:'Все квесты', server: 'allGenre'},
   Adventures: {ru: 'Приключения', server: 'adventures'},
   Horror: {ru: 'Ужасы', server: 'horror'},
   Mystic: {ru: 'Мистика', server: 'mystic'},

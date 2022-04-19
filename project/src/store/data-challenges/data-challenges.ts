@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { AllGenre, ApiActions, HeaderTab, LoadingStatus, NameSpace } from 'src/const';
+import { ApiActions, HeaderTab, LoadingStatus, NameSpace, TitleList } from 'src/const';
 import * as api from 'src/services/api';
 import { handleError } from 'src/services/handle-error';
 import { Challenge, ChallengeObject } from 'src/types/general.type';
@@ -8,10 +8,9 @@ import { parseResponse, restructureData } from 'src/utils/component-utils';
 
 const initialState: DataChallengesType = {
   challenges: null,
-  theme: AllGenre.server,
+  theme: TitleList.General.server,
   pageType: HeaderTab.Quest.linkName,
   loadingStatus: LoadingStatus.Idle,
-  error: null,
 };
 
 export const fetchQuestsAction = createAsyncThunk<void, undefined, {
@@ -78,12 +77,6 @@ export const dataChallenges = createSlice({
     setPageType: (state, action) => {
       state.pageType = action.payload;
     },
-    setChallengesLoadingStatus: (state, action) => {
-      state.loadingStatus = action.payload;
-    },
-    setError: (state, action) => {
-      state.error = action.payload;
-    },
   },
   extraReducers:  (builder) => {
     builder
@@ -111,7 +104,5 @@ export const dataChallenges = createSlice({
 export const {
   setQuests,
   setTheme,
-  setChallengesLoadingStatus,
-  setError,
   setPageType,
 } = dataChallenges.actions;

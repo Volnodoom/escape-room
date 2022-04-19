@@ -1,4 +1,4 @@
-import { AllGenre, LoadingStatus } from 'src/const';
+import { LoadingStatus, TitleList } from 'src/const';
 import { createSelector } from '@reduxjs/toolkit';
 import { Challenge } from 'src/types/general.type';
 import { State } from 'src/types/state.type';
@@ -30,6 +30,6 @@ export const getPageType = (state: State): string => state.DATA_CHALLENGES.pageT
 export const getFiletedChallenges = createSelector(
   getChallenges,
   getTheme,
-  (questList, theme) => theme === AllGenre.server
+  (questList, theme) => theme === TitleList.General.server
     ? questList
     : questList.filter((line) => line.type === theme));

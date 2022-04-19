@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as selectorQuest from 'src/store/data-challenges/challenges-selector';
 import NotAvailablePage from 'src/components/not-available-page/not-available-page';
 import { fetchOneQuesAction, setTheme } from 'src/store/data-challenges/data-challenges';
-import { AllGenre, LoadingStatus } from 'src/const';
+import { LoadingStatus, TitleList } from 'src/const';
 import LoadingScreen from 'src/components/loading-screen/loading-screen';
 import * as selectorBooking from 'src/store/data-booking/booking-selector';
 import { setBookingModal } from 'src/store/data-booking/data-booking';
@@ -27,7 +27,7 @@ function DetailedQuest ():JSX.Element {
   const isError = loadingChallengeStatus === LoadingStatus.Failed;
 
   useEffect(() => {
-    dispatch(setTheme(AllGenre.server));
+    dispatch(setTheme(TitleList.General.server));
   });
 
   useEffect(() => {

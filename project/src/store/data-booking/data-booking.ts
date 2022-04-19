@@ -6,10 +6,8 @@ import { BookingPost } from 'src/types/general.type';
 import { AppDispatch, DataBookingType, State } from 'src/types/state.type';
 
 const initialState: DataBookingType = {
-  bookingInfo: null,
   isModalActive: false,
   loadingStatus: LoadingStatus.Idle,
-  error: null,
 };
 
 export const fetchBookingOrderAction = createAsyncThunk<void, BookingPost, {
@@ -31,17 +29,11 @@ export const dataBooking = createSlice({
   name: NameSpace.DataBooking,
   initialState,
   reducers: {
-    setBookingInfo: (state, action) => {
-      state.bookingInfo = action.payload;
-    },
     setBookingModal: (state, action) => {
       state.isModalActive = action.payload;
     },
     setBookingLoadingStatus: (state, action) => {
       state.loadingStatus = action.payload;
-    },
-    setError: (state, action) => {
-      state.error = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -59,8 +51,6 @@ export const dataBooking = createSlice({
 });
 
 export const {
-  setBookingInfo,
   setBookingLoadingStatus,
-  setError,
   setBookingModal,
 } = dataBooking.actions;

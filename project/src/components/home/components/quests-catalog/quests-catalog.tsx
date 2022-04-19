@@ -5,7 +5,7 @@ import { ReactComponent as IconMystic } from '../../../../assets/img/icon-mystic
 import { ReactComponent as IconDetective } from '../../../../assets/img/icon-detective.svg';
 import { ReactComponent as IconScifi } from '../../../../assets/img/icon-scifi.svg';
 import * as S from './quests-catalog.styled';
-import { AllGenre, TitleList } from 'src/const';
+import { TitleList } from 'src/const';
 import { PreviewQuest } from 'src/components/card-quest/components';
 import { useDispatch, useSelector } from 'react-redux';
 import * as selector from 'src/store/data-challenges/challenges-selector';
@@ -15,7 +15,7 @@ import { adaptGenre } from 'src/utils/component-utils';
 
 const tabPatterns = [
   {
-    genre: AllGenre.server,
+    genre: TitleList.General.server,
     iconComponent: <IconAllQuests />,
   },
   {

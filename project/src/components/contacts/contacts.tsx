@@ -3,14 +3,14 @@ import * as S from './contacts.styled';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setPageType, setTheme } from 'src/store/data-challenges/data-challenges';
-import { AllGenre, HeaderTab } from 'src/const';
+import { HeaderTab, TitleList } from 'src/const';
 import { MapGeographical } from './components/components';
 
 function Contacts (): JSX.Element {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setTheme(AllGenre.server));
+    dispatch(setTheme(TitleList.General.server));
     dispatch(setPageType(HeaderTab.Contacts.linkName));
   });
 
